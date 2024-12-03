@@ -5,7 +5,7 @@ import ParentComponent from '../components/ParentComponent';
 
 const Home: React.FC = () => {
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: '50vw', height: '50vh' }}>
       <ParentComponent />
     </div>
   );
