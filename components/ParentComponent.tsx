@@ -67,6 +67,32 @@ const ParentComponent: React.FC = () => {
     }
   }, [isSessionActive, volumeLevel]);
 
+  useEffect(() => {
+    // Message handler function
+    const handleMessage = (event: MessageEvent) => {
+      // Security check: ensure the message is from your Wix site's origin
+     
+
+      const { action} = event.data;
+
+      if (action === 'clickToggleCallButton') {
+        // Find the button by its ID
+        const button = document.getElementById('toggleCallButton');
+        if (button) {
+          button.click();
+        }
+      }
+    };
+
+    // Add the event listener
+    window.addEventListener('message', handleMessage);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
   return (
     <div style={{ width: '100%', height: '100%' }}>
       {/* If you have a ConfigSheet component, include it here */}
@@ -74,6 +100,7 @@ const ParentComponent: React.FC = () => {
       <AbstractBall {...config} />
       <div className="flex justify-center mt-4">
         <button
+          id="toggleCallButton"
           onClick={toggleCall}
           className='m-2 p-2 bg-blue-500 text-white rounded flex items-center'
         >
