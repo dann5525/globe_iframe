@@ -51,7 +51,7 @@ const AbstractBall: React.FC<AbstractBallProps> = ({
   cameraSpeedY = 0.0,
   cameraSpeedX = 0.0,
   cameraZoom = 150,
-  cameraGuide = false, // This will be addressed in the next section
+ 
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
