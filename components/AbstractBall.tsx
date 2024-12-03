@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { IUniform } from 'three';
  
 interface AbstractBallProps {
   perlinTime?: number;
@@ -20,21 +21,21 @@ interface AbstractBallProps {
   cameraGuide?: boolean;
 }
 
-interface Uniform {
-  value: number;
-}
+
 
 interface Uniforms {
-  time: Uniform;
-  RGBr: Uniform;
-  RGBg: Uniform;
-  RGBb: Uniform;
-  RGBn: Uniform;
-  RGBm: Uniform;
-  morph: Uniform;
-  dnoise: Uniform;
-  psize: Uniform;
+  [uniform: string]: IUniform<number>;
+  time: IUniform<number>;
+  RGBr: IUniform<number>;
+  RGBg: IUniform<number>;
+  RGBb: IUniform<number>;
+  RGBn: IUniform<number>;
+  RGBm: IUniform<number>;
+  morph: IUniform<number>;
+  dnoise: IUniform<number>;
+  psize: IUniform<number>;
 }
+
 
 const AbstractBall: React.FC<AbstractBallProps> = ({
   perlinTime = 25.0,
