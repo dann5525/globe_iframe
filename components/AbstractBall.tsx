@@ -2,7 +2,41 @@ import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
  
-const AbstractBall: React.FC<any> = ({
+interface AbstractBallProps {
+  perlinTime?: number;
+  perlinMorph?: number;
+  perlinDNoise?: number;
+  chromaRGBr?: number;
+  chromaRGBg?: number;
+  chromaRGBb?: number;
+  chromaRGBn?: number;
+  chromaRGBm?: number;
+  sphereWireframe?: boolean;
+  spherePoints?: boolean;
+  spherePsize?: number;
+  cameraSpeedY?: number;
+  cameraSpeedX?: number;
+  cameraZoom?: number;
+  cameraGuide?: boolean;
+}
+
+interface Uniform {
+  value: number;
+}
+
+interface Uniforms {
+  time: Uniform;
+  RGBr: Uniform;
+  RGBg: Uniform;
+  RGBb: Uniform;
+  RGBn: Uniform;
+  RGBm: Uniform;
+  morph: Uniform;
+  dnoise: Uniform;
+  psize: Uniform;
+}
+
+const AbstractBall: React.FC<AbstractBallProps> = ({
   perlinTime = 25.0,
   perlinMorph = 25.0,
   perlinDNoise = 0.0,
@@ -12,12 +46,12 @@ const AbstractBall: React.FC<any> = ({
   chromaRGBn = 1.0,
   chromaRGBm = 1.0,
   sphereWireframe = false,
-  spherePoints = true,
-  spherePsize = 2.0,
+  spherePoints = false,
+  spherePsize = 1.0,
   cameraSpeedY = 0.0,
   cameraSpeedX = 0.0,
   cameraZoom = 150,
-  cameraGuide = false,
+  cameraGuide = false, // This will be addressed in the next section
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -26,7 +60,8 @@ const AbstractBall: React.FC<any> = ({
   const materialRef = useRef<THREE.ShaderMaterial | null>(null);
   const meshRef = useRef<THREE.Mesh | null>(null);
   const pointRef = useRef<THREE.Points | null>(null);
-  const uniformsRef = useRef<any>({
+
+  const uniformsRef = useRef<Uniforms>({
     time: { value: 0.0 },
     RGBr: { value: chromaRGBr / 10 },
     RGBg: { value: chromaRGBg / 10 },
@@ -35,7 +70,7 @@ const AbstractBall: React.FC<any> = ({
     RGBm: { value: chromaRGBm },
     morph: { value: perlinMorph },
     dnoise: { value: perlinDNoise },
-    psize: { value: spherePsize }
+    psize: { value: spherePsize },
   });
  
   useEffect(() => {
