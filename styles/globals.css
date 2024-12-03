@@ -2,20 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Remove or comment out the background variable if not needed elsewhere */
 :root {
-  --background: #ffffff;
+  /* --background: #ffffff; */
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    /* --background: #0a0a0a; */
     --foreground: #ededed;
   }
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: transparent; /* Set background to transparent */
   font-family: Arial, Helvetica, sans-serif;
 }
