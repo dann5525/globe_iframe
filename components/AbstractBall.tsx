@@ -176,7 +176,7 @@ const AbstractBall: React.FC<AbstractBallProps> = ({
   }, [cameraZoom]);  
  
   return (
-    <div ref={mountRef} style={{ width: '100%', height: '500px' }} className='rounded-2xl mt-2'>
+    <div ref={mountRef} style={{ width: '100%', height: '100%' , borderRadius: '1rem', marginTop: '0.5rem'}} className='rounded-2xl mt-2'>
       <script id="noiseVertexShader" type="x-shader/x-vertex">
         {`varying vec3 vNormal;
         uniform float time;
