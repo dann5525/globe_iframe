@@ -41,4 +41,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/b
 
 
 ticket number (5480)
-https://app.ezmoneyservices.ai/
+https://www.ez-money.io
